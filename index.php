@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    ?>
-</body>
-</html>
+<?php
+
+class Article
+{
+    public $id;
+    public $title;
+    public $content;
+    function view()
+    {
+        echo "<h1>$this->title</h1><p>$this->content</p>";
+    }
+}
+
+$a = new Article();
+echo $a->id;
+$a->id = 1;
+echo $a->id;
