@@ -2,9 +2,9 @@
 
 namespace my;
 
-class Article {
-    public $id;
-    public $author_id;
+class Post {
+    public $uuid;
+    public $author_uuid;
     public $title;
     public $text;
 }

@@ -7,6 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'my\\' => array($baseDir . '/src'),
+    'Symfony\\Polyfill\\Uuid\\' => array($vendorDir . '/symfony/polyfill-uuid'),
+    'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
+    'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
+    'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
 );

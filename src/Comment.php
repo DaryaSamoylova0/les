@@ -3,9 +3,9 @@
 namespace my;
 
 class Comment {
-    public $id;
-    public $author_id;
-    public $article_id;
+    public $uuid;
+    public $author_uuid;
+    public $article_uuid;
     public $text;
 }
 
