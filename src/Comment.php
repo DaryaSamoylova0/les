@@ -1,6 +1,6 @@
 <?php
 
-namespace src;
+namespace my;
 
 class Comment {
     public $id;
