@@ -1,0 +1,17 @@
+{
+    "name": "samoylova/lab3",
+    "autoload": {
+        "psr-4": {
+            "my\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dasha",
+            "email": "dasha_samoylova_02@mail.ru"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.23"
+    }
+}
