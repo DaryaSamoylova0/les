@@ -3,7 +3,7 @@
         'name' => 'samoylova/lab3',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '8a19482b875fbdd54ecff10b7487894ca0a89f35',
+        'reference' => 'b3cb4b5fc37a03174632cfae0d308e4980384fe5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -154,7 +154,7 @@
         'samoylova/lab3' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '8a19482b875fbdd54ecff10b7487894ca0a89f35',
+            'reference' => 'b3cb4b5fc37a03174632cfae0d308e4980384fe5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

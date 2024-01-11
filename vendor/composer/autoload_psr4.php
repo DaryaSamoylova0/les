@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'my\\' => array($baseDir . '/src'),
+    'UnitTests\\' => array($baseDir . '/tests'),
     'Symfony\\Polyfill\\Uuid\\' => array($vendorDir . '/symfony/polyfill-uuid'),
     'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
     'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),

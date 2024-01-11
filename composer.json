@@ -2,7 +2,8 @@
     "name": "samoylova/lab3",
     "autoload": {
         "psr-4": {
-            "my\\": "src/"
+            "my\\": "src/",
+            "UnitTests\\": "tests/"
         }
     },
     "authors": [

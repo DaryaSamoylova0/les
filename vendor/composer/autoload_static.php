@@ -19,6 +19,10 @@ class ComposerStaticInit71270bdb77883e5196d2e69106e480cb
         array (
             'my\\' => 3,
         ),
+        'U' => 
+        array (
+            'UnitTests\\' => 10,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Uuid\\' => 22,
@@ -51,6 +55,10 @@ class ComposerStaticInit71270bdb77883e5196d2e69106e480cb
         'my\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'UnitTests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Symfony\\Polyfill\\Uuid\\' => 
         array (
