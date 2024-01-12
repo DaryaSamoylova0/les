@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Http\Actions\Users;
+namespace UnitTests\Http\Action\Users;
 
 use http\Actions\Users\FindByUsername;
 use http\ErrorResponse;

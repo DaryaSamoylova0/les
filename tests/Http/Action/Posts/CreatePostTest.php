@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\Http\Actions\Posts;
+namespace UnitTests\Http\Action\Posts;
 
 use http\Actions\Posts\CreatePost;
 use http\ErrorResponse;
