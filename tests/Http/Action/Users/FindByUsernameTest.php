@@ -14,50 +14,40 @@ use my\Repositories\UserRepository;
 
 class FindByUsernameTest extends TestCase
 {
-    private $pdoMock;
-    private $stmtMock;
+    private PDO $pdoMock;
+    private PDOStatement $stmtMock;
     private UserRepository $repo;
 
-    protected function setUp(): void {
-        $this->pdoMock = $this->createMock(PDO::class);
-        $this->stmtMock = $this->createMock(PDOStatement::class);
+    protected function setUp(): void
+    {
+        $this->pdoMock = $this->getMockBuilder(PDO::class)->getMock();
+        $this->stmtMock = $this->getMockBuilder(PDOStatement::class)->getMock();
         $this->repo = new UserRepository($this->pdoMock);
     }
 
-    public function testItReturnErrorIfParamUserNotFound(): void
+    public function testItReturnsErrorIfParamUserNotFound(): void
     {
-        $request = new Request([], []);
-        $this->pdoMock->method('prepare')->willReturn($this->stmtMock);
-        $this->stmtMock->method('fetch')->willReturn(false);
+        $this->prepareStmtMock(false);
 
         $action = new FindByUsername($this->repo);
+        $response = $action->handle(new Request([], []));
 
-        $response = $action->handle($request);
-
-        $this->assertInstanceOf(ErrorResponse::class, $response);
-        $this->expectOutputString('{"succuess":false,"reason":"Incorrect param for query"}');
-        $response->send();
+        $this->assertErrorResponse($response, '{"success":false,"reason":"Incorrect param for query"}');
     }
 
-    public function testItReturnErrorIfUserNotFound(): void
+    public function testItReturnsErrorIfUserNotFound(): void
     {
-        $request = new Request(['username' => 'Ivan'], []);
-        $this->pdoMock->method('prepare')->willReturn($this->stmtMock);
-        $this->stmtMock->method('fetch')->willReturn(false);
+        $this->prepareStmtMock(false);
 
         $action = new FindByUsername($this->repo);
+        $response = $action->handle(new Request(['username' => 'Ivan'], []));
 
-        $response = $action->handle($request);
-
-        $this->assertInstanceOf(ErrorResponse::class, $response);
-        $this->expectOutputString('{"succuess":false,"reason":"Cannot get user: Ivan"}');
-        $response->send();
+        $this->assertErrorResponse($response, '{"success":false,"reason":"Cannot get user: Ivan"}');
     }
 
-    public function testItReturnUserByName(): void
+    public function testItReturnsUserByName(): void
     {
         $uuid = UUID::random();
-
         $mockUserData = [
             'uuid' => $uuid,
             'username' => 'ivan',
@@ -65,16 +55,31 @@ class FindByUsernameTest extends TestCase
             'last_name' => 'Ivanov',
         ];
 
-        $request = new Request(['username' => 'Ivan'], []);
-        $this->pdoMock->method('prepare')->willReturn($this->stmtMock);
-        $this->stmtMock->method('fetch')->willReturn($mockUserData);
+        $this->prepareStmtMock($mockUserData);
 
         $action = new FindByUsername($this->repo);
-        $response = $action->handle($request);
+        $response = $action->handle(new Request(['username' => 'Ivan'], []));
 
+        $this->assertSuccessResponse($response, '{"success":true,"data":{"username":"ivan","name":"Ivan Ivanov"}}');
+    }
+
+    private function prepareStmtMock($fetchResult): void
+    {
+        $this->pdoMock->expects($this->once())->method('prepare')->willReturn($this->stmtMock);
+        $this->stmtMock->expects($this->once())->method('fetch')->willReturn($fetchResult);
+    }
+
+    private function assertErrorResponse($response, $expectedOutput): void
+    {
+        $this->assertInstanceOf(ErrorResponse::class, $response);
+        $this->expectOutputString($expectedOutput);
+        $response->send();
+    }
+
+    private function assertSuccessResponse($response, $expectedOutput): void
+    {
         $this->assertInstanceOf(SuccessfullResponse::class, $response);
-        $this->expectOutputString('{"succuess":true,"data":{"username":"ivan","name":"Ivan Ivanov"}}');
-
+        $this->expectOutputString($expectedOutput);
         $response->send();
     }
 }
